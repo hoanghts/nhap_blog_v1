@@ -74,7 +74,7 @@ namespace nhap_blog_v1.Repository
 
         public Task<List<PostDto>> NextPage(int Unit, int CurrentPage)
         {
-            throw new NotImplementedException();
+            
         }
 
         public Task<List<PostDto>> PreviousPage(int Unit, int CurrentPage)
