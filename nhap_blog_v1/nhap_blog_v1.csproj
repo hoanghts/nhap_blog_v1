@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>D:\hts\project\nhap_blog_v1\nhap_blog_v1\wwwroot/xml/Summary.xml</DocumentationFile>
+    <DocumentationFile>D:\hts\project\nhap_blog_v1\nhap_blog_v1\wwwroot\xml\Administration.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

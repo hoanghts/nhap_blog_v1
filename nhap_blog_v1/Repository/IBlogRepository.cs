@@ -11,10 +11,9 @@ namespace nhap_blog_v1.Repository
     {
         string GetName();
         Task<List<PostDto>> GetNewPost();
-        //int CountPage(int Unit);
-        //Task<List<PostDto>> GetPostByPage(int Unit, int Page);
-        Task<Dictionary<int,List<PostDto>>> GetPostByPage(int Unit, int Page);
-        Task<List<PostDto>> NextPage(int Unit, int CurrentPage);
-        Task<List<PostDto>> PreviousPage(int Unit, int CurrentPage);
+        Task<int> CountPage();
+        Task<List<PostDto>> GetPostByPage(int Page);
+        Task<List<PostDto>> NextPage(int CurrentPage);
+        Task<List<PostDto>> PreviousPage(int CurrentPage);
     }
 }

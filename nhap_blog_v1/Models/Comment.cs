@@ -9,7 +9,7 @@ namespace nhap_blog_v1.Models
     {
         public int Id { get; set; }
         public int PostId { get; set; }
-        public int ParentId { get; set; }
+        public int? ParentId { get; set; }
         public int UserId { get; set; }
         public string Content { get; set; }
         public DateTime DateCreated { get; set; }

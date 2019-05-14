@@ -43,6 +43,106 @@
             <param name="CurrentPage"></param>
             <returns></returns>
         </member>
+        <member name="M:nhap_blog_v1.Controllers.CommentController.Add(nhap_blog_v1.Dto.CommentDto)">
+            <summary>
+            Them moi comment
+            </summary>
+            <param name="P"></param>
+            <returns></returns>
+        </member>
+        <member name="M:nhap_blog_v1.Controllers.CommentController.CountSubComment(System.Int32)">
+            <summary>
+            Dem so SubComment cua 1 Comment
+            </summary>
+            <param name="Id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:nhap_blog_v1.Controllers.CommentController.Delete(System.Int32)">
+            <summary>
+            Delete 1 Comment
+            </summary>
+            <param name="Id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:nhap_blog_v1.Controllers.CommentController.Get(System.Int32)">
+            <summary>
+            Lay 1 CommentDto
+            </summary>
+            <param name="Id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:nhap_blog_v1.Controllers.CommentController.GetFullComment(System.Int32)">
+            <summary>
+            Lay 1 CommentFullDto
+            </summary>
+            <param name="Id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:nhap_blog_v1.Controllers.CommentController.Update(System.Int32,nhap_blog_v1.Dto.CommentDto)">
+            <summary>
+            update 1 Comment
+            </summary>
+            <param name="Id"></param>
+            <param name="P"></param>
+            <returns></returns>
+        </member>
+        <member name="M:nhap_blog_v1.Controllers.PostController.Add(nhap_blog_v1.Dto.PostDto)">
+            <summary>
+            Them bai Post moi
+            </summary>
+            <param name="P"></param>
+            <returns></returns>
+        </member>
+        <member name="M:nhap_blog_v1.Controllers.PostController.CountComment(System.Int32)">
+            <summary>
+            Dem tong so Comment cua 1 bai Post
+            </summary>
+            <param name="Id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:nhap_blog_v1.Controllers.PostController.Delete(System.Int32)">
+            <summary>
+            Xoa 1 Post
+            </summary>
+            <param name="Id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:nhap_blog_v1.Controllers.PostController.Get(System.Int32)">
+            <summary>
+            Lay ra 1 PostDto
+            </summary>
+            <param name="Id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:nhap_blog_v1.Controllers.PostController.GetFull(System.Int32)">
+            <summary>
+            Lay ra 1 PostFullDto
+            </summary>
+            <param name="Id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:nhap_blog_v1.Controllers.PostController.NextPost(System.Int32)">
+            <summary>
+            Lay 1 post co Id lon hon Id hien tai
+            </summary>
+            <param name="CurrentPostID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:nhap_blog_v1.Controllers.PostController.PreviousPost(System.Int32)">
+            <summary>
+            Lay 1 post co Id nho hon Id hien tai
+            </summary>
+            <param name="CurrentPostID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:nhap_blog_v1.Controllers.PostController.Update(System.Int32,nhap_blog_v1.Dto.PostDto)">
+            <summary>
+            update 1 post
+            </summary>
+            <param name="Id"></param>
+            <param name="P"></param>
+            <returns></returns>
+        </member>
         <member name="M:nhap_blog_v1.Repository.BlogRepository.CountPage">
             <summary>
             Dem so page Post

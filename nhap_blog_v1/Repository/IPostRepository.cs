@@ -9,13 +9,13 @@ namespace nhap_blog_v1.Repository
 {
     public interface IPostRepository
     {
-        Task<PostFullDto> Get(int Id);
+        Task<PostDto> Get(int Id);
         Task<PostFullDto> GetFull(int Id);
         Task Add(PostDto P);
         Task Update(int Id, PostDto P);
         Task Delete(int Id);
-        Task<int> CountComment(int Id);
-        Task<PostFullDto> NextPost(int Unit, int CurrentPage);
-        Task<PostFullDto> PreviousPost(int Unit, int CurrentPage);
+        int CountComment(int Id);
+        Task<PostFullDto> NextPost(int CurrentPostID);
+        Task<PostFullDto> PreviousPost(int CurrentPostID);
     }
 }

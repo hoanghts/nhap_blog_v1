@@ -43,7 +43,7 @@ namespace nhap_blog_v1
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info { Title = "Nhap_API", Description = "Nhap_API_Blog_Post_Comment" });
-                var filePath = @"wwwroot/xml/Summary.xml";
+                var filePath = @"wwwroot/xml/Administration.xml";
                 c.IncludeXmlComments(filePath);
             });
         }

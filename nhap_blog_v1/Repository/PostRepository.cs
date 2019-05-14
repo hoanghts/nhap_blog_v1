@@ -17,44 +17,114 @@ namespace nhap_blog_v1.Repository
             _db = db;
             _mp = mp;
         }
-        public Task Add(PostDto P)
+
+        /// <summary>
+        /// Them bai Post moi
+        /// </summary>
+        /// <param name="P"></param>
+        /// <returns></returns>
+        public async Task Add(PostDto P)
         {
-            throw new NotImplementedException();
+            var buf = _mp.Map<Post>(P);
+            await _db.Posts.AddAsync(buf);
+            await _db.SaveChangesAsync();
         }
 
-        public Task<int> CountComment(int Id)
+        /// <summary>
+        /// Dem tong so Comment cua 1 bai Post
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        public int CountComment(int Id)
         {
-            throw new NotImplementedException();
+            return _db.Comments.Where(x => x.PostId == Id).Count();
         }
 
-        public Task Delete(int Id)
+        /// <summary>
+        /// Xoa 1 Post
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        public async Task Delete(int Id)
         {
-            throw new NotImplementedException();
+            var buf = await _db.Posts.FindAsync(Id);
+            var bufCm = _db.Comments.Where(x => x.PostId == Id).ToList();
+            _db.Posts.Remove(buf);
+            bufCm.RemoveAll(x => x.PostId == Id);
+            await _db.SaveChangesAsync();
         }
 
-        public Task<PostFullDto> Get(int Id)
+        /// <summary>
+        /// Lay ra 1 PostDto
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        public async Task<PostDto> Get(int Id)
         {
-            throw new NotImplementedException();
+            return _mp.Map<PostDto>(await _db.Posts.FindAsync(Id));
         }
 
-        public Task<PostFullDto> GetFull(int Id)
+        /// <summary>
+        /// Lay ra 1 PostFullDto
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        public async Task<PostFullDto> GetFull(int Id)
         {
-            throw new NotImplementedException();
+            PostFullDto result = new PostFullDto();
+            var buf = _mp.Map<PostFullDto>(await _db.Posts.FindAsync(Id));
+            var cm = _db.Comments.Where(x => x.PostId == Id).Where(c => c.ParentId == null).ToList();
+            result = buf;
+            result.Comments = _mp.Map<List<CommentDto>>(cm);
+            return result;
         }
 
-        public Task<PostFullDto> NextPost(int Unit, int CurrentPage)
+        /// <summary>
+        /// Lay 1 post co Id lon hon Id hien tai
+        /// </summary>
+        /// <param name="CurrentPostID"></param>
+        /// <returns></returns>
+        public async Task<PostFullDto> NextPost(int CurrentPostID)
         {
-            throw new NotImplementedException();
+            PostFullDto result = new PostFullDto();
+            int id = 0;
+            var post = _db.Posts.Where(x => x.Id > CurrentPostID).FirstOrDefault();
+            if (post == null)
+            {
+                id = CurrentPostID;
+                result = null;
+            }
+            else
+            {
+                id = post.Id;
+                result = await GetFull(id);
+            }
+            return result;
         }
 
-        public Task<PostFullDto> PreviousPost(int Unit, int CurrentPage)
+        /// <summary>
+        /// Lay 1 post co Id nho hon Id hien tai
+        /// </summary>
+        /// <param name="CurrentPostID"></param>
+        /// <returns></returns>
+        public async Task<PostFullDto> PreviousPost(int CurrentPostID)
         {
-            throw new NotImplementedException();
+            var post = _db.Posts.Where(x => x.Id < CurrentPostID).FirstOrDefault();
+            return await GetFull(post.Id);
         }
 
-        public Task Update(int Id, PostDto P)
+        /// <summary>
+        /// update 1 post
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <param name="P"></param>
+        /// <returns></returns>
+        public async Task Update(int Id, PostDto P)
         {
-            throw new NotImplementedException();
+            var re = await _db.Posts.FindAsync(Id);
+            var buf = _mp.Map<Post>(P);
+            re = buf;
+            await _db.SaveChangesAsync();
         }
     }
 }
