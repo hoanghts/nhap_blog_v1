@@ -21,6 +21,9 @@ namespace nhap_blog_v1.AutoMapper
 
             CreateMap<User, UserDto>();
             CreateMap<UserDto, User>();
+
+            CreateMap<Account, AccountDto>();
+            CreateMap<AccountDto, Account>();
         }
     }
 }

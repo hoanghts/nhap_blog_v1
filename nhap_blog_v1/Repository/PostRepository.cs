@@ -5,17 +5,34 @@ using System.Threading.Tasks;
 using nhap_blog_v1.Models;
 using nhap_blog_v1.Dto;
 using AutoMapper;
+using EasyCaching.Core;
 
 namespace nhap_blog_v1.Repository
 {
+    /// <summary>
+    /// class PostRepository
+    /// </summary>
     public class PostRepository : IPostRepository
     {
+        private readonly IEasyCachingProvider _pro;
+        /// <summary>
+        /// Field ClassDbcontext
+        /// </summary>
         public ClassDbContext _db;
+        /// <summary>
+        /// Field Imapper
+        /// </summary>
         public IMapper _mp;
-        public PostRepository(ClassDbContext db, IMapper mp)
+        /// <summary>
+        /// contructor
+        /// </summary>
+        /// <param name="db"></param>
+        /// <param name="mp"></param>
+        public PostRepository(ClassDbContext db, IMapper mp, IEasyCachingProvider provider)
         {
             _db = db;
             _mp = mp;
+            _pro = provider;
         }
 
         /// <summary>
@@ -61,7 +78,17 @@ namespace nhap_blog_v1.Repository
         /// <returns></returns>
         public async Task<PostDto> Get(int Id)
         {
-            return _mp.Map<PostDto>(await _db.Posts.FindAsync(Id));
+            var buf = await _pro.GetAsync<PostDto>("getPostDto");
+            if (!buf.IsNull)
+            {
+                return buf.Value;
+            }
+            var result = _mp.Map<PostDto>(await _db.Posts.FindAsync(Id));
+            if (result != null)
+            {
+                await _pro.SetAsync<PostDto>("getPostDto", result, TimeSpan.FromSeconds(10));
+            }
+            return result;
         }
 
         /// <summary>
@@ -123,7 +150,11 @@ namespace nhap_blog_v1.Repository
         {
             var re = await _db.Posts.FindAsync(Id);
             var buf = _mp.Map<Post>(P);
-            re = buf;
+            re.Id = buf.Id;
+            re.Title = buf.Title;
+            re.Content = buf.Content;
+            re.DateCreated = buf.DateCreated;
+            re.Comments = re.Comments;
             await _db.SaveChangesAsync();
         }
     }

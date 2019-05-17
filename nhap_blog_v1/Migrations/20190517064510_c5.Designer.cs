@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using nhap_blog_v1;
 
 namespace nhap_blog_v1.Migrations
 {
     [DbContext(typeof(ClassDbContext))]
-    partial class ClassDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190517064510_c5")]
+    partial class c5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

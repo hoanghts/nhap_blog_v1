@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using nhap_blog_v1.Dto;
@@ -50,6 +51,7 @@ namespace nhap_blog_v1.Controllers
         /// <returns></returns>
         [HttpDelete]
         [Route("{Id}")]
+        [Authorize(Roles = "Admin, Superuser")]
         public async Task Delete(int Id)
         {
             await _re.Delete(Id);
@@ -87,6 +89,7 @@ namespace nhap_blog_v1.Controllers
         /// <returns></returns>
         [HttpPut]
         [Route("{Id}")]
+        [Authorize(Roles = "Admin, Superuser")]
         public async Task Update(int Id, CommentDto P)
         {
             await _re.Update(Id, P);

@@ -5,17 +5,20 @@ using System.Threading.Tasks;
 using nhap_blog_v1.Dto;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using EasyCaching.Core;
 
 namespace nhap_blog_v1.Repository
 {
     public class BlogRepository : IBlogRepository
     {
+        private readonly IEasyCachingProvider _pro;
         public ClassDbContext _db;
         public IMapper _mp;
-        public BlogRepository(ClassDbContext db, IMapper mp)
+        public BlogRepository(ClassDbContext db, IMapper mp, IEasyCachingProvider provider)
         {
             _db = db;
             _mp = mp;
+            _pro = provider;
         }
         /// <summary>
         /// Dem so page Post
@@ -36,7 +39,11 @@ namespace nhap_blog_v1.Repository
         /// <returns></returns>
         public string GetName()
         {
-            return _db.Blogs.Single().Name;
+            var buf = _pro.Get<string>("getname");
+            if (!buf.IsNull) return buf.ToString();
+            var buf1 = _db.Blogs.Single().Name;
+            _pro.Set<string>("getname", buf1, TimeSpan.FromSeconds(10));
+            return buf1;
         }
         
         /// <summary>

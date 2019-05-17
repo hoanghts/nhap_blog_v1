@@ -4,6 +4,32 @@
         <name>nhap_blog_v1</name>
     </assembly>
     <members>
+        <member name="M:nhap_blog_v1.Controllers.AccountController.Delete(System.Int32)">
+            <summary>
+            Xoa account (Role admin)
+            </summary>
+            <param name="Id"></param>
+        </member>
+        <member name="M:nhap_blog_v1.Controllers.AccountController.Login(nhap_blog_v1.Dto.AccountDto)">
+            <summary>
+            dang nhap
+            </summary>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
+        <member name="M:nhap_blog_v1.Controllers.AccountController.register(nhap_blog_v1.Dto.AccountDto)">
+            <summary>
+            dang ki
+            </summary>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
+        <member name="M:nhap_blog_v1.Controllers.AccountController.Update(nhap_blog_v1.Dto.AccountDto)">
+            <summary>
+            update account (role admin)
+            </summary>
+            <param name="user"></param>
+        </member>
         <member name="M:nhap_blog_v1.Controllers.BlogController.CountPage">
             <summary>
             Dem so page Post
@@ -181,6 +207,28 @@
             </summary>
             <param name="CurrentPage"></param>
             <returns></returns>
+        </member>
+        <member name="T:nhap_blog_v1.Repository.PostRepository">
+            <summary>
+            class PostRepository
+            </summary>
+        </member>
+        <member name="F:nhap_blog_v1.Repository.PostRepository._db">
+            <summary>
+            Field ClassDbcontext
+            </summary>
+        </member>
+        <member name="F:nhap_blog_v1.Repository.PostRepository._mp">
+            <summary>
+            Field Imapper
+            </summary>
+        </member>
+        <member name="M:nhap_blog_v1.Repository.PostRepository.#ctor(nhap_blog_v1.ClassDbContext,AutoMapper.IMapper)">
+            <summary>
+            contructor
+            </summary>
+            <param name="db"></param>
+            <param name="mp"></param>
         </member>
         <member name="M:nhap_blog_v1.Repository.PostRepository.Add(nhap_blog_v1.Dto.PostDto)">
             <summary>

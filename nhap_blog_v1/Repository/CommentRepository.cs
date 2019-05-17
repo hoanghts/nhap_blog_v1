@@ -83,7 +83,7 @@ namespace nhap_blog_v1.Repository
             foreach (CommentFullDto item in re)
             {
                 List<CommentFullDto> buf = new List<CommentFullDto> { item };
-                List<CommentFullDto> result_1 = new List<CommentFullDto>();
+                List<CommentFullDto> result_1 = new List<CommentFullDto>(buf);
                 int count = 0;
                 while (count < buf.Count)
                 {
@@ -106,7 +106,13 @@ namespace nhap_blog_v1.Repository
         {
             var re = await _db.Comments.FindAsync(Id);
             var buf = _mp.Map<Comment>(P);
-            re = buf;
+            re.Id = buf.Id;
+            re.PostId = buf.PostId;
+            re.ParentId = buf.ParentId;
+            re.UserId = buf.UserId;
+            re.Content = buf.Content;
+            re.DateCreated = buf.DateCreated;
+            re.SubComment = re.SubComment;
             await _db.SaveChangesAsync();
         }
     }

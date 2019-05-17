@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using nhap_blog_v1.Dto;
@@ -34,6 +35,7 @@ namespace nhap_blog_v1.Controllers
         /// Lay ten cua Blog
         /// </summary>
         /// <returns></returns>
+        //[Authorize]
         [HttpGet]
         [Route("Name")]
         public string GetName()

@@ -2,19 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace nhap_blog_v1.Controllers
+namespace nhap_jwt.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    
     public class ValuesController : ControllerBase
     {
         // GET api/values
         [HttpGet]
+        //[Authorize(Policy = "dk1")]
+        [Authorize]
         public ActionResult<IEnumerable<string>> Get()
         {
-            return new string[] { "value1", "value2" };
+            var userName = User.Identity.Name;
+            return new string[] { "value1", "value2" , userName};
         }
 
         // GET api/values/5
