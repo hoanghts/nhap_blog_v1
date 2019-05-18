@@ -1,5 +1,4 @@
 ﻿
-
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -15,6 +14,9 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using EasyCaching.Core;
 using EasyCaching.InMemory;
+using NLog;
+using System.IO;
+using nhap_blog_v1.Log;
 
 namespace nhap_blog_v1
 {
@@ -22,6 +24,7 @@ namespace nhap_blog_v1
     {
         public Startup(IConfiguration configuration)
         {
+            LogManager.LoadConfiguration(System.String.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
             Configuration = configuration;
         }
 
@@ -31,6 +34,9 @@ namespace nhap_blog_v1
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            //
+            services.AddSingleton<ILog, LogNLog>();
+            //
             services.AddDbContext<ClassDbContext>(op => op.UseSqlServer(Configuration["ConnectionString:BlogDB_13_05"]));
 
             services.AddScoped<IBlogRepository, BlogRepository>();

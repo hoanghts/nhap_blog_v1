@@ -17,5 +17,10 @@ namespace nhap_blog_v1.Repository
         int CountComment(int Id);
         Task<PostFullDto> NextPost(int CurrentPostID);
         Task<PostFullDto> PreviousPost(int CurrentPostID);
+        Task<List<PostDto>> GetNewPost();
+        Task<int> CountPage();
+        Task<List<PostDto>> GetPostByPage(int Page);
+        Task<List<PostDto>> NextPage(int CurrentPage);
+        Task<List<PostDto>> PreviousPage(int CurrentPage);
     }
 }

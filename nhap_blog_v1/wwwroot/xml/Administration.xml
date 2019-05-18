@@ -30,43 +30,10 @@
             </summary>
             <param name="user"></param>
         </member>
-        <member name="M:nhap_blog_v1.Controllers.BlogController.CountPage">
-            <summary>
-            Dem so page Post
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:nhap_blog_v1.Controllers.BlogController.GetName">
             <summary>
             Lay ten cua Blog
             </summary>
-            <returns></returns>
-        </member>
-        <member name="M:nhap_blog_v1.Controllers.BlogController.GetNewPost">
-            <summary>
-            Lay List cac bai Post moi nhat (mac dinh lay toi da 5 bai)
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:nhap_blog_v1.Controllers.BlogController.GetPostByPage(System.Int32)">
-            <summary>
-            Lay so bai Post dua vao viec chon so trang
-            </summary>
-            <param name="Page"></param>
-            <returns></returns>
-        </member>
-        <member name="M:nhap_blog_v1.Controllers.BlogController.NextPage(System.Int32)">
-            <summary>
-            Nhay sang Page lon hon page hien tai
-            </summary>
-            <param name="CurrentPage"></param>
-            <returns></returns>
-        </member>
-        <member name="M:nhap_blog_v1.Controllers.BlogController.PreviousPage(System.Int32)">
-            <summary>
-            Nhay sang page nho hon page hien tai
-            </summary>
-            <param name="CurrentPage"></param>
             <returns></returns>
         </member>
         <member name="M:nhap_blog_v1.Controllers.CommentController.Add(nhap_blog_v1.Dto.CommentDto)">
@@ -169,43 +136,43 @@
             <param name="P"></param>
             <returns></returns>
         </member>
-        <member name="M:nhap_blog_v1.Repository.BlogRepository.CountPage">
+        <member name="M:nhap_blog_v1.Controllers.PostController.CountPage">
             <summary>
             Dem so page Post
             </summary>
             <returns></returns>
         </member>
-        <member name="M:nhap_blog_v1.Repository.BlogRepository.GetName">
-            <summary>
-            Lay ten cua Blog
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:nhap_blog_v1.Repository.BlogRepository.GetNewPost">
+        <member name="M:nhap_blog_v1.Controllers.PostController.GetNewPost">
             <summary>
             Lay List cac bai Post moi nhat (mac dinh lay toi da 5 bai)
             </summary>
             <returns></returns>
         </member>
-        <member name="M:nhap_blog_v1.Repository.BlogRepository.GetPostByPage(System.Int32)">
+        <member name="M:nhap_blog_v1.Controllers.PostController.GetPostByPage(System.Int32)">
             <summary>
             Lay so bai Post dua vao viec chon so trang
             </summary>
             <param name="Page"></param>
             <returns></returns>
         </member>
-        <member name="M:nhap_blog_v1.Repository.BlogRepository.NextPage(System.Int32)">
+        <member name="M:nhap_blog_v1.Controllers.PostController.NextPage(System.Int32)">
             <summary>
             Nhay sang Page lon hon page hien tai
             </summary>
             <param name="CurrentPage"></param>
             <returns></returns>
         </member>
-        <member name="M:nhap_blog_v1.Repository.BlogRepository.PreviousPage(System.Int32)">
+        <member name="M:nhap_blog_v1.Controllers.PostController.PreviousPage(System.Int32)">
             <summary>
             Nhay sang page nho hon page hien tai
             </summary>
             <param name="CurrentPage"></param>
+            <returns></returns>
+        </member>
+        <member name="M:nhap_blog_v1.Repository.BlogRepository.GetName">
+            <summary>
+            Lay ten cua Blog
+            </summary>
             <returns></returns>
         </member>
         <member name="T:nhap_blog_v1.Repository.PostRepository">
@@ -223,7 +190,7 @@
             Field Imapper
             </summary>
         </member>
-        <member name="M:nhap_blog_v1.Repository.PostRepository.#ctor(nhap_blog_v1.ClassDbContext,AutoMapper.IMapper)">
+        <member name="M:nhap_blog_v1.Repository.PostRepository.#ctor(nhap_blog_v1.ClassDbContext,AutoMapper.IMapper,EasyCaching.Core.IEasyCachingProvider)">
             <summary>
             contructor
             </summary>
@@ -285,6 +252,39 @@
             </summary>
             <param name="Id"></param>
             <param name="P"></param>
+            <returns></returns>
+        </member>
+        <member name="M:nhap_blog_v1.Repository.PostRepository.CountPage">
+            <summary>
+            Dem so page Post
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:nhap_blog_v1.Repository.PostRepository.GetNewPost">
+            <summary>
+            Lay List cac bai Post moi nhat (mac dinh lay toi da 5 bai)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:nhap_blog_v1.Repository.PostRepository.GetPostByPage(System.Int32)">
+            <summary>
+            Lay so bai Post dua vao viec chon so trang
+            </summary>
+            <param name="Page"></param>
+            <returns></returns>
+        </member>
+        <member name="M:nhap_blog_v1.Repository.PostRepository.NextPage(System.Int32)">
+            <summary>
+            Nhay sang Page lon hon page hien tai
+            </summary>
+            <param name="CurrentPage"></param>
+            <returns></returns>
+        </member>
+        <member name="M:nhap_blog_v1.Repository.PostRepository.PreviousPage(System.Int32)">
+            <summary>
+            Nhay sang page nho hon page hien tai
+            </summary>
+            <param name="CurrentPage"></param>
             <returns></returns>
         </member>
     </members>

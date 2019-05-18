@@ -1,0 +1,4 @@
+2019-05-18 10:23:31.9689 INFO Information is logged
+2019-05-18 10:23:32.0127 WARN Warning is logged
+2019-05-18 10:23:32.0266 DEBUG Debug log is logged
+2019-05-18 10:23:32.0462 ERROR Error is logged
