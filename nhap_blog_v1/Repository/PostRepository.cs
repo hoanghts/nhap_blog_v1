@@ -84,16 +84,16 @@ namespace nhap_blog_v1.Repository
         /// <returns></returns>
         public async Task<PostDto> Get(int Id)
         {
-            string cachekey = $"post:{Id}";
-            var buf = await _pro.GetAsync<PostDto>(cachekey);
-            if (!buf.IsNull)
-            {
-                return buf.Value;
-            }
+            //string cachekey = $"post:{Id}";
+            //var buf = await _pro.GetAsync<PostDto>(cachekey);
+            //if (!buf.IsNull)
+            //{
+            //    return buf.Value;
+            //}
             var result = _mp.Map<PostDto>(await _db.Posts.FindAsync(Id));
             if (result != null)
             {
-                await _pro.SetAsync<PostDto>(cachekey, result, TimeSpan.FromDays(1));
+                //await _pro.SetAsync<PostDto>(cachekey, result, TimeSpan.FromDays(1));
             }
             return result;
         }
@@ -172,14 +172,14 @@ namespace nhap_blog_v1.Repository
         /// <returns></returns>
         public async Task<int> CountPage()
         {
-            var cache = await _pro.GetAsync<int>("countpage");
-            if (!cache.IsNull) return cache.Value;
+            //    var cache = await _pro.GetAsync<int>("countpage");
+            //    if (!cache.IsNull) return cache.Value;
 
             int re = 1;
             int countpost = _db.Posts.Count();
             if (countpost < 1) re = 0;
             else re = countpost / 10 + 1;
-            await _pro.SetAsync<int>("countpage", re, TimeSpan.FromDays(1));
+            //await _pro.SetAsync<int>("countpage", re, TimeSpan.FromDays(1));
             return re;
         }
 
