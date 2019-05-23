@@ -148,7 +148,7 @@ namespace nhap_blog_v1.Controllers
         /// <param name="Page"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("{Page}")]
+        [Route("GetPostByPage/{Page}")]
         public async Task<List<PostDto>> GetPostByPage(int Page)
         {
             return await _re.GetPostByPage(Page);

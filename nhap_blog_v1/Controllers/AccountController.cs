@@ -45,10 +45,6 @@ namespace nhap_blog_v1.Controllers
         public IActionResult Login([FromBody] AccountDto user)
         {
             var result = _re.Login(user.UserName, user.PassWord);
-            if (result == null)
-            {
-                return BadRequest();
-            }
             return Ok(result);
         }
 
@@ -60,9 +56,9 @@ namespace nhap_blog_v1.Controllers
         [AllowAnonymous]
         [HttpPost]
         [Route("register")]
-        public async Task register([FromBody] AccountDto user)
+        public async Task<megReturnDto> register([FromBody] AccountDto user)
         {
-             await _re.register(user);
+             return await _re.register(user);
         }
 
         /// <summary>

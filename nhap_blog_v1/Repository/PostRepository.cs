@@ -91,10 +91,10 @@ namespace nhap_blog_v1.Repository
             //    return buf.Value;
             //}
             var result = _mp.Map<PostDto>(await _db.Posts.FindAsync(Id));
-            if (result != null)
-            {
-                //await _pro.SetAsync<PostDto>(cachekey, result, TimeSpan.FromDays(1));
-            }
+            //if (result != null)
+            //{
+            //    //await _pro.SetAsync<PostDto>(cachekey, result, TimeSpan.FromDays(1));
+            //}
             return result;
         }
 

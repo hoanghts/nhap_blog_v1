@@ -36,9 +36,12 @@ namespace nhap_blog_v1.Repository
             
         }
 
-        public string Login(string username, string password)
+        public megReturnDto Login(string username, string password)
         {
-            string result = null;
+            megReturnDto result = new megReturnDto();
+            result.errCode = 1;
+            result.meg = null;
+
             var login = _db.Accounts.Where(u => u.UserName == username && u.PassWord == password).FirstOrDefault();
             if (login != null)
             {
@@ -55,19 +58,35 @@ namespace nhap_blog_v1.Repository
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
                 };
                 var token = tokenHandler.CreateToken(tokenDescriptor);
-                result = tokenHandler.WriteToken(token);
+                result.meg = tokenHandler.WriteToken(token);
+                result.errCode = 0;
             }
             return result;
         }
 
-        public async Task register(AccountDto user)
+        public async Task<megReturnDto> register(AccountDto user)
         {
+            megReturnDto meg = new megReturnDto();
+            meg.errCode = 1;
+            meg.meg = "Loi khong co du lieu vao";
             if (user != null)   
             {
-                var buf = _mp.Map<Account>(user);
-                await _db.Accounts.AddAsync(buf);
-                await _db.SaveChangesAsync();
+                var ch = _db.Accounts.Where(u => u.UserName == user.UserName).FirstOrDefault();
+                if (ch != null)
+                {
+                    meg.errCode = 1;
+                    meg.meg = "Loi: ten dang ki da co nguoi su dung";
+                }
+                else
+                {
+                    var buf = _mp.Map<Account>(user);
+                    await _db.Accounts.AddAsync(buf);
+                    await _db.SaveChangesAsync();
+                    meg.errCode = 0;
+                    meg.meg = "Dang ki thanh cong";
+                }
             }
+            return meg;
         }
 
         public void Update(AccountDto user)

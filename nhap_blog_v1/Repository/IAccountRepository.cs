@@ -9,8 +9,8 @@ namespace nhap_blog_v1.Repository
 {
     public interface IAccountRepository
     {
-        Task register(AccountDto user);
-        string Login(string username, string password);
+        Task<megReturnDto> register(AccountDto user);
+        megReturnDto Login(string username, string password);
         void Update(AccountDto user);
         void Delete(int Id);
     }
