@@ -40,5 +40,10 @@ namespace nhap_blog_v1.Repository
             _pro.Set<string>("getname", buf1, TimeSpan.FromDays(1));
             return buf1;
         }
+
+        public List<PostDto> GetPosts()
+        {
+            return _mp.Map<List<PostDto>>(_db.Posts.ToList());
+        }
     }
 }

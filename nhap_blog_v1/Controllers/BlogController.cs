@@ -31,6 +31,11 @@ namespace nhap_blog_v1.Controllers
         {
             return _re.GetName();
         }
-
+        [HttpGet]
+        [Route("allpost")]
+        public List<PostDto> GetAllPost()
+        {
+            return _re.GetPosts();
+        }
     }
 }

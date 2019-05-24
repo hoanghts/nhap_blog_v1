@@ -10,6 +10,6 @@ namespace nhap_blog_v1.Repository
     public interface IBlogRepository
     {
         string GetName();
-        
+        List<PostDto> GetPosts();
     }
 }

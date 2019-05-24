@@ -68,14 +68,14 @@ namespace nhap_blog_v1.Repository
         {
             megReturnDto meg = new megReturnDto();
             meg.errCode = 1;
-            meg.meg = "Loi khong co du lieu vao";
+            meg.meg = "Lỗi không có dữ liệu";
             if (user != null)   
             {
                 var ch = _db.Accounts.Where(u => u.UserName == user.UserName).FirstOrDefault();
                 if (ch != null)
                 {
                     meg.errCode = 1;
-                    meg.meg = "Loi: ten dang ki da co nguoi su dung";
+                    meg.meg = "Lỗi tên đăng ký đã tồn tại";
                 }
                 else
                 {
@@ -83,7 +83,7 @@ namespace nhap_blog_v1.Repository
                     await _db.Accounts.AddAsync(buf);
                     await _db.SaveChangesAsync();
                     meg.errCode = 0;
-                    meg.meg = "Dang ki thanh cong";
+                    meg.meg = "Đăng kí thành công, Đến trang đăng nhập";
                 }
             }
             return meg;
